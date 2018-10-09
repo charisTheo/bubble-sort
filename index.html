@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0 , maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#2962ff">
+  <meta name="description" content="A Bubble Sort algorithm written in Javascript">
+  <meta name="author" content="https://www.github.com/charisTheo">
+  <meta property="og:site_name" content="Bubble Sort" />
+  <meta property="og:description" content="A Bubble Sort algorithm written in Javascript"/>
+  <meta property="og:url" content="https://github.com/charisTheo/bubble-sort"/>
+  
+  <title>Bubble Sort</title>
+
+  <!--Font Plugins-->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:500,700" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./styles.css" type="text/css">
+  <link rel="stylesheet" href="./scrollBar.css" type="text/css">
+</head>
+
+<body>
+  <main>
+    <a id="title" href="https://github.com/charisTheo/bubble-sort">
+      <h1>Bubble Sort</h1>
+    </a>
+    <div id="container">
+      <div id="numbers-container">
+
+      </div>
+      
+      <label for="add-numbers">Add Numbers</label>
+      <form id="add-numbers">
+        <input name="number" type="number" required>
+        <button type="submit" role="button">
+          <i class="fa fa-plus fa-3x" aria-hidden="true"></i>
+        </button>
+      </form>
+      
+      <button type="button" id="ascending">
+        <i class="fa fa-sort-up fa-3x" aria-hidden="true"></i>
+      </button>
+      <button type="button" id="descending">
+        <i class="fa fa-sort-down fa-3x" aria-hidden="true"></i>
+      </button>
+    </div>
+  </main>
+
+  <script>
+  (function(){
+    let numberArray = [];
+
+    let compare = function(a, b) {
+     return a - b;
+    }
+    function sortDescending(arrayToSort) {
+      for (let sortCount = 0; sortCount < arrayToSort.length/2; sortCount++) {
+      	for (let i = 0; i < arrayToSort.length -1; i++) {
+       	  for (let j = i+1; j <= i+2 && j < arrayToSort.length; j++) {
+       	  	let comparison = compare(arrayToSort[i], arrayToSort[j]);
+           	if (comparison < 0) {
+           	//comparison is positive (a is greater than b)
+              // swap numbers 
+              let temp = arrayToSort[j];
+              arrayToSort[j] = arrayToSort[i];
+              arrayToSort[i] = temp;
+           	}
+          }
+       }
+      }
+      return arrayToSort;
+    }
+    function sortAscending(arrayToSort) {
+     for (let sortCount = 0; sortCount < arrayToSort.length/2; sortCount++) {
+    	for (let i = 0; i < arrayToSort.length -1; i++) {
+      	for (let j = i+1; j <= i+2 && j < arrayToSort.length; j++) {
+      		let comparison = compare(arrayToSort[i], arrayToSort[j]);
+        	if (comparison > 0) {
+          //comparison is positive (a is greater than b)
+            // swap numbers
+        		let temp = arrayToSort[j];
+            arrayToSort[j] = arrayToSort[i];
+            arrayToSort[i] = temp;
+        	}
+        }
+      }
+     }
+     return arrayToSort;
+    }
+
+// TODO: render results interactively 
+// by adding classes and changing the flex-order
+    function renderResults(arrayToRender) {
+      let i = 0;
+      let numbers = document.getElementById("numbers-container").children;
+      for (const number in numbers) {
+        if (numbers.hasOwnProperty(number)) {
+          const element = numbers[number];
+          // remove animation to re-run it
+          element.classList.remove("sorted");
+          void element.offsetWidth;
+          // add class to toggle animation
+          element.classList += " sorted"  
+          element.innerHTML = arrayToRender[i].toString();
+          i++;
+        }
+      }
+    };
+
+    document.getElementById('add-numbers').addEventListener("submit", function(e) {
+      e.preventDefault();
+      const value = this.elements["number"].value;
+      // create new div element with the value of the new number
+      let newNumberDiv = document.createElement("div");
+      newNumberDiv.innerHTML = value.toString();
+      newNumberDiv.setAttribute("class", "number");
+      // add the new div to the container
+      document.getElementById("numbers-container").appendChild(newNumberDiv);
+      // add it to the array to be processed later
+      numberArray.push(value);
+
+      // clear input
+      this.elements["number"].value = null;
+    });
+
+    document.getElementById('ascending').addEventListener("click", function() {
+      let sortedArray = sortAscending(numberArray);
+      console.log(sortedArray);
+      renderResults(sortedArray);
+    });
+    
+    document.getElementById('descending').addEventListener("click", function() {
+      let sortedArray = sortDescending(numberArray);
+      console.log(sortedArray);
+      renderResults(sortedArray);
+    });
+  })()
+  </script>
+
+</body>
+
+</html>

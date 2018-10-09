@@ -1,0 +1,124 @@
+*, html ,body {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+html {
+    background-image: -webkit-linear-gradient(180deg, #2962ff 20%, #0039cb 80%); 
+    background-image:    -moz-linear-gradient(180deg, #2962ff 20%, #0039cb 80%); 
+    background-image:     -ms-linear-gradient(180deg, #2962ff 20%, #0039cb 80%); 
+    background-image:      -o-linear-gradient(180deg, #2962ff 20%, #0039cb 80%); 
+    background-image:         linear-gradient(180deg, #2962ff 20%, #0039cb 80%);
+    height: 100%;
+    width: 100%;
+}
+body {
+    max-width: 100vw;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    font-family: 'Orbitron', cursive;
+    margin: 0;
+    -webkit-tap-highlight-color: #f44336;
+}
+main {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+main #title {
+    text-decoration: none;
+    outline: none;
+}
+main #title h1 {
+    color: #c6ff00;
+    text-decoration: none;
+    word-spacing: 5px;
+    letter-spacing: 1px;
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding: 0px 10px;
+}
+main #title:active,
+main #title:hover {
+    outline: none;
+    text-decoration: none;
+    color: #90cc00;
+}
+main #title:focus {
+    outline: none;
+    text-decoration: none;
+}
+main button {
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: none;
+    text-align: center;
+    background-color: #90cc00;
+    box-shadow: 4px 3px rgba(0, 0, 0, 0.6);
+}
+main button:active {    
+    background-color: #c6ff00;
+    box-shadow: 2px 1px rgba(0, 0, 0, 0.6);
+}
+main #container {
+    margin: 50px 0;
+}
+main #container form {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+main form#add-numbers input {
+    width: auto;
+    font-weight: 700;
+    height: 50px;
+    outline: none;
+    border: 1px solid #90cc00;
+    text-align: center;
+    background-color: #8fcc0071   
+}
+
+main div.number {
+    width: auto;
+    max-width: 180px;
+    height: 80px;
+    text-align: center;
+    font-weight: 700;
+    background-color: white;
+    margin: 10px auto;
+    padding: 20px 0;
+}
+main div.number.sorted {
+    animation: sorted 1s ease-in-out;
+}
+
+@keyframes sorted {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+::-moz-selection {
+    background: #f44336;
+    text-shadow: none; }
+  
+  ::selection {
+    background: #f44336;
+    text-shadow: none; }
+  
+  img::selection {
+    background: transparent; }
+  
+  img::-moz-selection {
+    background: transparent; }
